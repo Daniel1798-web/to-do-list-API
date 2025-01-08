@@ -37,7 +37,7 @@ describe("Auth Middleware", () => {
 
      expect(mockRes.status).toHaveBeenCalledWith(401);
      expect(mockRes.json).toHaveBeenCalledWith({ 
-       message: "Acceso denegado, token no proporcionado" 
+       message: "Access denied, token not provided" 
      });
    });
 

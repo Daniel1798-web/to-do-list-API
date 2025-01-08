@@ -72,7 +72,7 @@ describe("Error Middleware", () => {
 
       expect(mockResponse.status).toHaveBeenCalledWith(500);
       expect(mockResponse.json).toHaveBeenCalledWith({
-        message: "something went wrong",
+        message: "Something went wrong",
         error: mockError.message,
       });
     });

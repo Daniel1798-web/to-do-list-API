@@ -59,14 +59,14 @@ describe("Task Controller - createTask", () => {
 
  it("should handle errors correctly", async () => {
    (Task as unknown as jest.Mock).mockImplementation(() => ({
-     save: jest.fn().mockRejectedValue(new Error("Server Error"))
+     save: jest.fn().mockRejectedValue(new Error("Server error"))
    }));
 
    await createTask(req, res);
 
    expect(res.status).toHaveBeenCalledWith(500);
    expect(res.json).toHaveBeenCalledWith({
-     message: "Server Error",
+     message: "Server error",
      error: expect.any(Error)
    });
  });

@@ -26,6 +26,8 @@ connectDB();
 
 const allowedOrigins = ['http://localhost:4200',];
 
+//update cors when uploading project to cloud
+/*
 app.use(cors({
     origin: (origin, callback) => {
       if (!origin) {
@@ -37,7 +39,7 @@ app.use(cors({
       callback(new Error('restricted access'));
     }
   }));
-
+*/
 
 
   

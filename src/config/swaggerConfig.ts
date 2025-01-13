@@ -11,7 +11,7 @@ const options = {
     },
     servers: [
       {
-        url: 'http://localhost:3000',
+        url: 'https://to-do-list-api-production-28bb.up.railway.app/',
       },
     ],
   },

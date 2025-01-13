@@ -12,13 +12,16 @@ export const registerUser = async (req: Request, res: Response) => {
             return res.status(400).json({ message: "User already exists" });
         }
 
-        const hashedPassword = await bcrypt.hash(password, 10);
+        const salt = await bcrypt.genSalt()
+        const hashedPassword = await bcrypt.hash(password, salt);
 
         const newUser: IUser = new User({
             name,
             email,
+            salt,
             password: hashedPassword,
         });
+
 
         await newUser.save();
         res.status(201).json({ message: "User registered successfully" });
@@ -35,8 +38,17 @@ export const loginUser = async (req: Request, res: Response) => {
         if (!user) {
             return res.status(404).json({ message: "User not found" });
         }
+        console.log('Hash almacenado en la base de datos:', user.password);
 
-        const isPasswordValid = await bcrypt.compare(password, user.password);
+        const hashedPassword = await bcrypt.hash(password, user.salt);
+
+        console.log(hashedPassword)
+        console.log(user.password)
+
+        const isPasswordValid = hashedPassword === user.password;
+
+
+        console.log(isPasswordValid)
         if (!isPasswordValid) {
             return res.status(401).json({ message: "Invalid credentials" });
         }

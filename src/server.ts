@@ -24,22 +24,21 @@ connectDB();
 
 // Cors configuration
 
-const allowedOrigins = ['http://localhost:4200', 'https://to-do-list-front-roan.vercel.app/', '*'];
+const allowedOrigins = ['*'];
 
-//update cors when uploading project to cloud
+
 
 app.use(cors({
-    origin: (origin, callback) => {
-      if (!origin) {
-        return callback(new Error('restricted access'), false);
-      }
-      if (allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      }
-      callback(new Error('restricted access'));
+  origin: (origin, callback) => {
+    if (!origin) {
+      return callback(new Error('Error (Postman/Curl)'), false);
     }
-  }));
-
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    callback(new Error('CORS'));
+  }
+}));
 
   
 

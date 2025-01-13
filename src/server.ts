@@ -24,20 +24,12 @@ connectDB();
 
 // Cors configuration
 
-const allowedOrigins = ['*'];
-
-
+app.use(cors());
 
 app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin) {
-      return callback(new Error('Error (Postman/Curl)'), false);
-    }
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    }
-    callback(new Error('CORS'));
-  }
+    origin: '*', 
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
   
